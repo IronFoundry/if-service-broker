@@ -177,7 +177,7 @@ namespace IronFoundry.ServiceBroker.Tests
 
                 IHttpActionResult result = controller.Unbind(instanceId, bindingId, serviceId.ToString(), planId);
                 
-                Assert.IsType<OkResult>(result);
+                Assert.IsType<OkNegotiatedContentResult<EmptyResponse>>(result);
                 service.Received().RemoveBinding(Arg.Is<RemoveBindingRequest>(x => x.BindingId == bindingId && x.InstanceId == instanceId && x.ServiceId == serviceId.ToString() && x.PlanId == planId));
             }
 
@@ -234,7 +234,7 @@ namespace IronFoundry.ServiceBroker.Tests
                 
                 IHttpActionResult result = controller.Deprovision(instanceId, serviceId.ToString(), planId);
 
-                Assert.IsType<OkResult>(result);
+                Assert.IsType<OkNegotiatedContentResult<EmptyResponse>>(result);
                 service.Received().Deprovision(Arg.Is<DeprovisionRequest>(x => x.InstanceId == instanceId && x.ServiceId == serviceId.ToString() && x.PlanId == planId));
             }
 

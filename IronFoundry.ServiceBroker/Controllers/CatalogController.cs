@@ -92,7 +92,7 @@ namespace IronFoundry.ServiceBroker.Controllers
             try
             {
                 service.RemoveBinding(request);
-                return Ok(new {});
+                return Ok(new EmptyResponse());
             }
             catch (InvalidOperationException)
             {
@@ -115,7 +115,7 @@ namespace IronFoundry.ServiceBroker.Controllers
             try
             {
                 service.Deprovision(request);
-                return Ok(new {});
+                return Ok(new EmptyResponse());
             }
             catch (InvalidOperationException)
             {

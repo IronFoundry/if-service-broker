@@ -92,6 +92,7 @@
     <Compile Include="Models\CreateBindingResponse.cs" />
     <Compile Include="Models\Credentials.cs" />
     <Compile Include="Models\DeprovisionRequest.cs" />
+    <Compile Include="Models\EmptyResponse.cs" />
     <Compile Include="Models\ICloudFoundryService.cs" />
     <Compile Include="Models\IConfiguration.cs" />
     <Compile Include="Models\IDatabaseBuilder.cs" />
