@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <VersionFile Include="$(SolutionDir)\IronFoundry.ServiceBroker\Properties\AssemblyInfo.cs" />
+    <VersionFile Include="$(SolutionDir)\IronFoundry.ServiceBroker\Properties\CommonAssemblyInfo.cs" />
   </ItemGroup>
 
   <Target Name="ResolveTestAssemblies">
