@@ -78,6 +78,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\common\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Global.asax.cs">
@@ -109,7 +112,6 @@
     <Compile Include="Models\RemoveBindingRequest.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceMetadata.cs" />
-    <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

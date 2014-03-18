@@ -63,6 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\common\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="CatalogControllerTests.cs" />
     <Compile Include="MsSqlCloudFoundryServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
