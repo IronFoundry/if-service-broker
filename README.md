@@ -28,7 +28,7 @@ Before you begin you should install `cf` Command Line Interface. Installation in
         * databaseUserFormat - The prefix to apply to users created in the database. It prefixes this to the binding id.
         * sqlDataSource - The datasource for the database created. This will be used as the data source in the connection string for the application.
         * sqlServerPort - This is the port that is used to connect to SQL Server.
- * [Register your service broker](http://docs.cloudfoundry.com/docs/running/architecture/services/api.html) and make your [plan(s) public](http://docs.cloudfoundry.com/docs/running/architecture/services/access-control.html#make-plans-public).
+ * [Register your service broker](http://docs.cloudfoundry.org/services/managing-service-brokers.html#register-broker) and make your [plan(s) public](http://docs.cloudfoundry.org/services/access-control.html#make-plans-public).
  
 
 ### Collaborate
