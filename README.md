@@ -18,7 +18,10 @@ Before you begin you should install `cf` Command Line Interface. Installation in
  RECONFIGURE
  GO
  ```
- * You will need to clone the repository and deploy it to IIS.
+ * Deploy the service broker to IIS
+     * Clone the repository
+     * Publish the web project from Visual Studio
+     * Add the published project as a new web site in IIS
  * If you want to setup authentication, you can setup auth in IIS. You can also enable SSL through IIS.
  * Configure your network environment to make the service be accessible from the Cloud Foundry.
  * Update the `appSettings` in the Web.config file. The following keys are in the `appSettings` 
