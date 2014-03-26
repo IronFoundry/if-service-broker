@@ -15,6 +15,9 @@ namespace IronFoundry.ServiceBroker
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config.EnableSystemDiagnosticsTracing();
+            config.Services.Replace(typeof(System.Web.Http.Tracing.ITraceWriter), new WebApiContrib.Tracing.Nlog.NlogTraceWriter());
         }
     }
 }
