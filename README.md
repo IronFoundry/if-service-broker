@@ -21,6 +21,8 @@ Before you begin you should install `cf` Command Line Interface. Installation in
  * Deploy the service broker to IIS
      * Clone the repository
      * Publish the web project from Visual Studio
+     * Add the "Application Server" role to the Windows server that will host IIS
+     * Add the "Web Server (IIS) Suppport" Application Server role service
      * Add the published project as a new web site in IIS
  * If you want to setup authentication, you can setup auth in IIS. You can also enable SSL through IIS.
  * Configure your network environment to make the service be accessible from the Cloud Foundry.
