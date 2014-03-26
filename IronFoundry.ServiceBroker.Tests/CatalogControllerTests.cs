@@ -69,7 +69,19 @@ namespace IronFoundry.ServiceBroker.Tests
                 
                 IHttpActionResult result = controller.Provision(instanceId, new ProvisionRequest { ServiceId = serviceId.ToString() });
 
-                Assert.IsType<CreatedNegotiatedContentResult<ProvisionResponse>>(result);
+                Assert.IsType<NegotiatedContentResult<ProvisionResponse>>(result);
+                service.Received().Provision(Arg.Is<ProvisionRequest>(x => x.InstanceId == instanceId));
+            }
+
+            [Fact]
+            public void ReturnsCreatedResponseEvenWhenUrlIsEmpty()
+            {
+                service.Provision(Arg.Any<ProvisionRequest>()).ReturnsForAnyArgs(new ProvisionResponse { Url = "" });
+                string instanceId = Guid.NewGuid().ToString();
+
+                IHttpActionResult result = controller.Provision(instanceId, new ProvisionRequest { ServiceId = serviceId.ToString() });
+
+                Assert.IsType<NegotiatedContentResult<ProvisionResponse>>(result);
                 service.Received().Provision(Arg.Is<ProvisionRequest>(x => x.InstanceId == instanceId));
             }
 

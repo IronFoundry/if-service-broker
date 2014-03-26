@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
+using System.Web.Http.Results;
 using IronFoundry.ServiceBroker.Models;
 
 namespace IronFoundry.ServiceBroker.Controllers
@@ -43,7 +45,7 @@ namespace IronFoundry.ServiceBroker.Controllers
             try
             {
                 ProvisionResponse response = service.Provision(request);
-                return Created(response.Url, response);
+                return Content(HttpStatusCode.Created, response);
             }
             catch (InvalidOperationException)
             {
