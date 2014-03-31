@@ -54,7 +54,8 @@ namespace IronFoundry.ServiceBroker.Controllers
         }
 
         // Had to hack the route so 
-        [Route("service-broker/v2/service_instances/{instanceId}/service_bindings/{bindingId}", Name = "create_binding")]
+        [Route("service-broker/v2/service_instances/{instanceId}/service_bindings/{bindingId}", Name = "fixed-create_binding")]
+        [Route("v2/service_instances/{instanceId}/service_bindings/{bindingId}", Name = "create_binding")]
         [HttpPut]
         public IHttpActionResult Bind(string instanceId, string bindingId, [FromBody] CreateBindingRequest request)
         {
