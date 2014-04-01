@@ -80,8 +80,8 @@ namespace IronFoundry.ServiceBroker.Models
 
             var formattedDatabaseName = string.Format(databaseNameFormat, databaseName);
             var userName = string.Format(databaseUserFormat, bindingId);
-            var password = Guid.NewGuid().ToString();
-            var command = string.Format(MsSqlTemplates.CreateUserForDatabase, formattedDatabaseName, userName, password); ;
+            var password = System.Web.Security.Membership.GeneratePassword(24, 4);
+            var command = string.Format(MsSqlTemplates.CreateUserForDatabase, formattedDatabaseName, userName, password);
 
             using (var sqlConn = new SqlConnection(connectionString))
             {
