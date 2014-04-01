@@ -39,10 +39,11 @@ namespace IronFoundry.ServiceBroker.Models
                                                      DECLARE @res INT;
                                                      IF NOT EXISTS (SELECT name FROM sys.database_principals WHERE name = '{1}')
                                                      BEGIN
-                                                     CREATE USER [{1}]
-                                                     WITH PASSWORD='{2}'
-                                                     , DEFAULT_SCHEMA=[dbo];
-                                                     SET @res = 0
+                                                       CREATE USER [{1}]
+                                                       WITH PASSWORD='{2}'
+                                                       , DEFAULT_SCHEMA=[dbo];
+                                                       EXEC sp_addrolemember N'db_owner', N'{1}';                                                     
+                                                       SET @res = 0
                                                      END
                                                      ELSE SET @res = -1
 
