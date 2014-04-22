@@ -15,6 +15,11 @@
     <VersionFile Include="$(SolutionDir)\common\CommonAssemblyInfo.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageWeb Include="$(SolutionDir)\IronFoundry.ServiceBroker">
+    </PackageWeb>
+  </ItemGroup>
+  
   <Target Name="ResolveTestAssemblies">
     <ItemGroup>
       <TestAssembly Include="$(SolutionDir)\**\bin\$(Configuration)\*.Test.dll" />

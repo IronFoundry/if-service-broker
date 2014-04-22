@@ -38,6 +38,27 @@
         <BuildInParallel Condition=" '$(BuildInParallel)' == '' ">false</BuildInParallel>
     </PropertyGroup>
     
+    <!-- Defaults for PackageXxx items -->
+    <ItemDefinitionGroup>
+        <PackageBin>
+            <Name>%(Filename)%(Extension)</Name>
+            <DeploymentName>%(Name)</DeploymentName>
+            <Deploy>true</Deploy>
+        </PackageBin>
+
+        <PackageFolder>
+            <Name>%(Filename)%(Extension)</Name>
+            <DeploymentName>%(Name)</DeploymentName>
+            <Deploy>true</Deploy>
+        </PackageFolder>
+        
+        <PackageWeb>
+            <Name>%(Filename)%(Extension)</Name>
+            <DeploymentName>%(Name)</DeploymentName>
+            <Deploy>true</Deploy>
+        </PackageWeb>
+    </ItemDefinitionGroup>
+    
     <!-- Extensibility Points -->
     <Target Name="ResolveTestAssemblies"></Target>
     <Target Name="AfterPackageOutput"></Target>
@@ -140,14 +161,40 @@
         <xunit Assemblies="$(File)" />
     </Target>
 
-    <Target Name="Package">
+    <Target Name="Package" DependsOnTargets="PackageWeb">
+    </Target>
+    
+    <Target Name="PackageWeb" DependsOnTargets="SetInternalProperties;Build">
         <ItemGroup>
-            <PackagedOutput Include="$(SolutionDir)\**\bin\$(Configuration)\**"></PackagedOutput>
+            <PackageWebItem Include="@(PackageWeb)">
+                <Name>%(Name)</Name>
+                <ProjectFile>%(FullPath)\%(Name).csproj</ProjectFile>
+                <OutputDir>$(BinOutputDir)\%(DeploymentName)</OutputDir>
+            </PackageWebItem>
+        </ItemGroup>
+        
+        <Message Text="&#10;ProjectFile: %(PackageWebItem.ProjectFile) &#10;OutputDir: %(PackageWebItem.OutputDir)" />
+
+        <PropertyGroup>
+            <ProjectReferenceBuildTargets>ResolveReferences;CopyFilesToOutputDirectory</ProjectReferenceBuildTargets>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <PackageWebItemTask Include="%(PackageWebItem.ProjectFile)">
+                <Properties>
+                    Configuration=$(Configuration);
+                    MvcBuildViews=false;
+                    BuildProjectReferences=true;
+                    ProjectReferenceBuildTargets=$(ProjectReferenceBuildTargets);
+                    WebProjectOutputDir=%(PackageWebItem.OutputDir);
+                    OutDir=%(PackageWebItem.OutputDir)\bin
+                </Properties>
+            </PackageWebItemTask>
         </ItemGroup>
 
-        <RemoveDir Condition="Exists('$(BinOutputDir)')" Directories="$(BinOutputDir)" />
-
-        <Copy SourceFiles="@(PackagedOutput)" DestinationFolder="$(BinOutputDir)" />
+        <MSBuild Projects="@(PackageWebItemTask)"
+            BuildInParallel="$(BuildInParallel)"
+            Targets="ResolveReferences;_CopyWebApplication" />
     </Target>
     
     <!-- External Targets (i.e. called from the command-line or build server -->
