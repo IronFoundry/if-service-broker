@@ -51,7 +51,7 @@ $NuGetExe = "$BuildRootDir\nuget.exe"
 $NuGetNuSpec = "$BuildRootDir\Default.Deploy.nuspec"
 
 $ReleaseDir = "$IFSourceDirectory\release"
-$BrokerOut = "$IFSourceDirectory\output\$BuildVersion\binaries\IronFoundry.BrokerService"
+$BrokerOut = "$IFSourceDirectory\output\$BuildVersion\binaries\IronFoundry.ServiceBroker"
 
 function CreateNuSpecs()
 {
