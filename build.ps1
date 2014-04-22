@@ -53,12 +53,6 @@ $NuGetNuSpec = "$BuildRootDir\Default.Deploy.nuspec"
 $ReleaseDir = "$IFSourceDirectory\release"
 $BrokerOut = "$IFSourceDirectory\output\$BuildVersion\binaries"
 
-function BuildBroker()
-{
-    Write-Host "Building Warden: $BuildVersion"
-    .\build.bat Default /verbosity:minimal /p:BuildNumber="$BuildVersion"
-}
-
 function CreateNuSpecs()
 {
     Write-Host "Creating nuspec packages"
@@ -74,8 +68,6 @@ function NuGetPush
         . $NuGetExe push -Source $NuGetPackageUrl -ApiKey "$NuGetApiKey" "$($_.FullName)"
     }
 }
-
-BuildBroker
 
 if ($NuGetPackageUrl -ne '')
 {
