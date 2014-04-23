@@ -42,11 +42,6 @@ namespace IronFoundry.ServiceBroker.Models
             
             var formattedDatabaseName = string.Format(databaseNameFormat, databaseName);
 
-            if (!Directory.Exists(databaseFilePath))
-            {
-                throw new ArgumentException("The requested path for the data files does not exist. Please check your SQL file path in configuration.");
-            }
-
             string createDatabaseCommand;
             if (sqlPlan.DatabaseSize >= 0)
             {
