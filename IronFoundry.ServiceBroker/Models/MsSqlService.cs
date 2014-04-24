@@ -20,7 +20,7 @@ namespace IronFoundry.ServiceBroker.Models
             Plans.Add(new MsSqlPlan
                       {
                           Id = FreePlanId.ToString(),
-                          Name = "Free",
+                          Name = "free",
                           Description = "Free plan",
                           DatabaseSize = 1024,
                           Metadata = new PlanMetadata

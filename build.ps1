@@ -53,10 +53,16 @@ $NuGetNuSpec = "$BuildRootDir\Default.Deploy.nuspec"
 $ReleaseDir = "$IFSourceDirectory\release"
 $BrokerOut = "$IFSourceDirectory\output\$BuildVersion\binaries\IronFoundry.ServiceBroker"
 
+function CopyTools()
+{
+    mkdir "$BrokerOut\tools\" -force | Out-Null
+    copy "$ToolsDir\*.*" "$BrokerOut\tools\"
+}
+
 function CreateNuSpecs()
 {
     Write-Host "Creating nuspec packages"
-    mkdir $ReleaseDir -force
+    mkdir $ReleaseDir -force | Out-Null
     & $NuGetExe pack "$NuGetNuSpec" -Version $NuGetVersion -Prop "Id=ironfoundry.brokerservice" -BasePath "$BrokerOut" -NoPackageAnalysis -NoDefaultExcludes -OutputDirectory "$ReleaseDir"
 }
 
@@ -71,6 +77,7 @@ function NuGetPush
 
 if ($NuGetPackageUrl -ne '')
 {
+    CopyTools
     CreateNuSpecs
     NuGetPush
 }
