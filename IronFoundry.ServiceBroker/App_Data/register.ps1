@@ -13,11 +13,11 @@ param (
   $brokerUrl
 )
 
-cf api $apiUrl
-cf login -a $apiUrl -u $apiUser -p $apiPassword -o $apiOrg -s $apiSpace
+.\cf.exe api $apiUrl
+.\cf.exe login -a $apiUrl -u $apiUser -p $apiPassword -o $apiOrg -s $apiSpace
 
 # Look to see if this is already connected
-$jsonServiceBrokers = cf curl -X 'GET' /v2/service_brokers
+$jsonServiceBrokers = .\cf.exe curl -X 'GET' /v2/service_brokers
 $serviceBrokers = "$jsonServiceBrokers" | ConvertFrom-Json
 foreach ($resource in $serviceBrokers.resources) {
   if ($resource.entity.name -eq $brokerName -and $resource.entity.broker_url -eq $brokerUrl) {
@@ -26,15 +26,15 @@ foreach ($resource in $serviceBrokers.resources) {
   }
 }
 
-cf delete-service-broker $brokerName -f
-cf create-service-broker $brokerName user password $brokerUrl
+.\cf.exe delete-service-broker $brokerName -f
+.\cf.exe create-service-broker $brokerName user password $brokerUrl
 
 if ($? -eq $false) {
   Write-Error "Failed to create service broker $brokerName for url $brokerUrl."
   exit 1
 }
 
-$jsonresponse = cf curl /v2/service_plans -X 'GET'
+$jsonresponse = .\cf.exe curl /v2/service_plans -X 'GET'
 
 if ($? -eq $false) {
   Write-Error "Failed to get service plans."
@@ -46,7 +46,7 @@ $response = "$jsonresponse" | ConvertFrom-Json
 # We assume only one response coming back right now
 $guid = $response.resources[0].metadata.guid
 
-cf curl /v2/service_plans/$guid -X 'PUT' -d '{\"public\":true}' | Out-Null
+.\cf.exe curl /v2/service_plans/$guid -X 'PUT' -d '{\"public\":true}' | Out-Null
 
 if ($? -eq $false) {
   Write-Error "Failed to set plan $guid to public."
