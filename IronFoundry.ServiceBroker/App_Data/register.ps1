@@ -10,9 +10,9 @@ param (
   [Parameter(Mandatory=$True)]
   $brokerName,
   [Parameter(Mandatory=$True)]
-  $brokerUrl
+  $brokerUrl,
   [Parameter(Mandatory=$True)]
-  $brokerUserName
+  $brokerUserName,
   [Parameter(Mandatory=$True)]
   $brokerPassword
 )
