@@ -7,6 +7,7 @@ using IronFoundry.ServiceBroker.Models;
 
 namespace IronFoundry.ServiceBroker.Controllers
 {
+    [Authorize]
     public class CatalogController : ApiController
     {
         private readonly Catalog servicesCatalog;

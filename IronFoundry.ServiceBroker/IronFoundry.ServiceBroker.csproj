@@ -127,6 +127,7 @@
     <Compile Include="Models\RemoveBindingRequest.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceMetadata.cs" />
+    <Compile Include="Modules\BasicAuthHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
