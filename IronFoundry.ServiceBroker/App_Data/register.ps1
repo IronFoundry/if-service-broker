@@ -43,9 +43,10 @@ if ($? -eq $false) {
 
 $response = "$jsonresponse" | ConvertFrom-Json
 
-# We assume only one response coming back right now
-$guid = $response.resources[0].metadata.guid
+# Find the 'free' plan by guid and make it public
+$guid = $response.resources | ForEach-Object { if ($_.entity.unique_id -eq '69d2ffd5-0902-46f5-a603-e56354e430ef') { return $_.metadata.guid } }
 
+Write-Host "Making Service Plan $guid Public"
 .\cf.exe curl /v2/service_plans/$guid -X 'PUT' -d '{\"public\":true}' | Out-Null
 
 if ($? -eq $false) {
