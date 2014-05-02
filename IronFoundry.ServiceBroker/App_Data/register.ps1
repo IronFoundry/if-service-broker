@@ -11,6 +11,10 @@ param (
   $brokerName,
   [Parameter(Mandatory=$True)]
   $brokerUrl
+  [Parameter(Mandatory=$True)]
+  $brokerUserName
+  [Parameter(Mandatory=$True)]
+  $brokerPassword
 )
 
 .\cf.exe api $apiUrl
@@ -27,7 +31,7 @@ foreach ($resource in $serviceBrokers.resources) {
 }
 
 .\cf.exe delete-service-broker $brokerName -f
-.\cf.exe create-service-broker $brokerName user password $brokerUrl
+.\cf.exe create-service-broker $brokerName $brokerUserName $brokerPassword $brokerUrl
 
 if ($? -eq $false) {
   Write-Error "Failed to create service broker $brokerName for url $brokerUrl."
