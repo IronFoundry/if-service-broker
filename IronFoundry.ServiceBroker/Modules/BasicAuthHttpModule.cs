@@ -96,8 +96,8 @@ namespace IronFoundry.ServiceBroker.Modules
 
         private bool CheckPassword(string userName, string password)
         {
-            var expectedUserName = configuration.GetAppSetting("basicAuthUser");
-            var expectedPassword = configuration.GetAppSetting("basicAuthPassword");
+            var expectedUserName = configuration.GetAppSetting("brokerUserName");
+            var expectedPassword = configuration.GetAppSetting("brokerPassword");
             return userName == expectedUserName && password == expectedPassword;
         }
 

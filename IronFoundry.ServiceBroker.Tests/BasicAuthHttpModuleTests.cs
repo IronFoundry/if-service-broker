@@ -140,8 +140,8 @@ namespace IronFoundry.ServiceBroker.Tests
         private IConfiguration CreateMockConfiguration(string userName = "user", string password = "password")
         {
             var configuration = Substitute.For<IConfiguration>();
-            configuration.GetAppSetting("basicAuthUser").Returns(userName);
-            configuration.GetAppSetting("basicAuthPassword").Returns(password);
+            configuration.GetAppSetting("brokerUserName").Returns(userName);
+            configuration.GetAppSetting("brokerPassword").Returns(password);
 
             return configuration;
         }
