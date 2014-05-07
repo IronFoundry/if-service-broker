@@ -1,7 +1,7 @@
 Service Broker for Cloud Foundry
 ====================
 
-Server Broker for Cloud Foundry Service is a Microsoft .Net based service broker for a Cloud Foundry v2.0. It uses WebAPI to host the services. The server broker ships with one service for Microsoft Sql Server. This service will provision databases and users for applications. It can be extend to include any plans you want to offer.
+Server Broker for Cloud Foundry Service is a Microsoft .NET based service broker for a Cloud Foundry v2.0. It uses WebAPI to host the services. The server broker ships with one service for Microsoft SQL Server. This service will provision databases and users for applications. It can be extended to include any plans you want to offer.
 
 The broker assumes SQL Server 2012. It uses [Contained Databases](http://technet.microsoft.com/en-us/library/ff929071.aspx) which is new functionality in SQL Server 2012. 
 
